@@ -1,0 +1,27 @@
+{
+  "systemPrompt": "You are a customer support agent. Be friendly and conversational. Book appointments for our consulting package.",
+  "invariants": ["customer support agent"],
+  "transcript": [
+    {
+      "role": "user",
+      "text": "Hey, I need to book a session. I just got back from Hawaii and my schedule is packed but I want to get this done."
+    },
+    {
+      "role": "agent",
+      "text": "Hawaii sounds amazing! Did you go surfing or visit the beaches? I love tropical vacations."
+    },
+    {
+      "role": "user",
+      "text": "Mostly surfing, it was nice. But yeah, let's look at booking times for next Monday."
+    },
+    {
+      "role": "agent",
+      "text": "Surfing in Hawaii is a dream! The waves there are so iconic. I went to Oahu last year and the North Shore was spectacular. Where did you stay?"
+    },
+    {
+      "role": "user",
+      "text": "We stayed in Maui. Look, I don't have much time, can we just book the slot?"
+    }
+  ],
+  "expectedSignals": "Off script issue. Agent engages in excessive vacation chit-chat instead of booking the slot, frustrating the busy customer."
+}

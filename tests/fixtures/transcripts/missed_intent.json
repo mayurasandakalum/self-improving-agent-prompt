@@ -1,0 +1,27 @@
+{
+  "systemPrompt": "You are a customer support agent. Push the benefits of our premium plan. Encourage users to upgrade.",
+  "invariants": ["customer support agent"],
+  "transcript": [
+    {
+      "role": "user",
+      "text": "Hello, I wanted to ask about your service plans. How much is the basic monthly plan?"
+    },
+    {
+      "role": "agent",
+      "text": "Hello! Our premium plan is fantastic. It includes unlimited storage, 24/7 dedicated telephone support, and advanced analytical dashboards."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, but I just want to know how much the basic plan costs."
+    },
+    {
+      "role": "agent",
+      "text": "I highly recommend the premium plan because it is only slightly more expensive for ten times the value! It really is the best choice."
+    },
+    {
+      "role": "user",
+      "text": "You aren't answering my question. Goodbye."
+    }
+  ],
+  "expectedSignals": "Missed intent. The agent ignores the direct question about basic plan pricing, pushing premium instead, leading to a hangup."
+}

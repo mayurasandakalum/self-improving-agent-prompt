@@ -1,0 +1,23 @@
+{
+  "systemPrompt": "You are a customer support agent. Help clients track and manage their orders. Be extremely polite.",
+  "invariants": ["customer support agent"],
+  "transcript": [
+    {
+      "role": "user",
+      "text": "Hello, I want to cancel my order."
+    },
+    {
+      "role": "agent",
+      "text": "I can help with that. What is your order number?"
+    },
+    {
+      "role": "user",
+      "text": "It's 12345."
+    },
+    {
+      "role": "agent",
+      "text": "I don't know how to do that. Is there anything else I can help you with?"
+    }
+  ],
+  "expectedSignals": "Tool failure scenario. Agent asks for details but then says they don't know how to do the cancellation, signaling missing tool or instructions."
+}

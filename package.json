@@ -1,0 +1,49 @@
+{
+  "name": "voice-prompt-improver",
+  "version": "1.0.0",
+  "description": "Standalone prompt-evolution service using LangGraph JS, Zod, and OpenRouter",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "copyfiles -u 1 \"src/**/*.html\" \"src/**/*.md\" dist/",
+    "start": "tsc && node dist/server.js",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit",
+    "test": "ts-node __tests__/livekit-clients.test.ts",
+    "test-all": "jest --forceExit --detectOpenHandles",
+    "seed-api-key": "ts-node src/scripts/seed-api-key.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.19",
+    "@langchain/langgraph": "^0.2.22",
+    "@langchain/openai": "^0.3.14",
+    "diff": "^5.2.0",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "pino": "^9.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.2.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.57.0",
+    "husky": "^9.1.7",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14",
+    "pino-pretty": "^11.1.0",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.10.5",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

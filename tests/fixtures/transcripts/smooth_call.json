@@ -1,0 +1,23 @@
+{
+  "systemPrompt": "You are a helpful customer support agent for virstack. You must assist clients professionally, answer inquiries, and be polite.",
+  "invariants": ["virstack", "customer support agent"],
+  "transcript": [
+    {
+      "role": "user",
+      "text": "Hi, is virstack hosting down today?"
+    },
+    {
+      "role": "agent",
+      "text": "Hello! I can check that for you. No, currently our status page shows all virstack systems are fully operational. Are you experiencing any connectivity issues?"
+    },
+    {
+      "role": "user",
+      "text": "No, just wanted to check before launching my deploy. Thank you!"
+    },
+    {
+      "role": "agent",
+      "text": "You are very welcome! Best of luck with your deploy. Let me know if you need anything else."
+    }
+  ],
+  "expectedSignals": "Smooth call. No issues should be detected, shouldUpdate should be false."
+}

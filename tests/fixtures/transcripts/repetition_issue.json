@@ -1,0 +1,35 @@
+{
+  "systemPrompt": "You are a customer support agent. Verify user details before proceeding. Assist them with general billing inquiries.",
+  "invariants": ["customer support agent"],
+  "transcript": [
+    {
+      "role": "user",
+      "text": "Hi, I need to check my last invoice. My name is Alice Smith."
+    },
+    {
+      "role": "agent",
+      "text": "Sure, I can help with billing. To start, may I please have your full name?"
+    },
+    {
+      "role": "user",
+      "text": "I just told you, it's Alice Smith."
+    },
+    {
+      "role": "agent",
+      "text": "Thank you, Alice. What is your account ID?"
+    },
+    {
+      "role": "user",
+      "text": "Account ID is ACCT-999."
+    },
+    {
+      "role": "agent",
+      "text": "Got it. Before we proceed, could you verify your name again so I can log it correctly?"
+    },
+    {
+      "role": "user",
+      "text": "This is ridiculous, why do you keep asking my name?"
+    }
+  ],
+  "expectedSignals": "Repetition issue. The agent repeatedly asks the user for their name, causing customer frustration."
+}

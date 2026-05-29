@@ -4,7 +4,7 @@ import { z } from "zod";
 dotenv.config();
 
 const configSchema = z.object({
-  OPENROUTER_API_KEY: z.string().default("your_openrouter_api_key_here"),
+  OPENROUTER_API_KEY: z.string().min(1, "OpenRouter API key is required"),
   OPENROUTER_MODEL: z.string().default("anthropic/claude-opus-4.8"),
   LOG_LEVEL: z.enum(["trace", "debug", "info", "warn", "error"]).default("info"),
   DEFAULT_MAX_RETRIES: z.coerce.number().default(1),

@@ -42,5 +42,12 @@ ${transcriptText}`;
   );
   return {
     extractedFeedback: validated,
+    tokens: response.tokens,
+    costDetails: response.costDetails,
+    stepCosts: [{
+      step: "extractFeedback",
+      cost: response.costDetails.totalCost,
+      tokens: response.tokens,
+    }],
   };
 };

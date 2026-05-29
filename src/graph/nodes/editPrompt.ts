@@ -76,5 +76,12 @@ ${state.validationResult.failures.map((f: string) => `- ${f}`).join("\n")}
     proposedPrompt,
     changelog,
     retryCount: retryIncrement,
+    tokens: response.tokens,
+    costDetails: response.costDetails,
+    stepCosts: [{
+      step: "editPrompt",
+      cost: response.costDetails.totalCost,
+      tokens: response.tokens,
+    }],
   };
 };

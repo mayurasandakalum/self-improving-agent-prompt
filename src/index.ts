@@ -17,6 +17,9 @@ export interface ImprovePromptResult {
     diff: string;
     retryCount: number;
     durationMs: number;
+    tokens?: any;
+    costDetails?: any;
+    stepCosts?: any[];
   };
 }
 
@@ -84,6 +87,9 @@ export async function improvePrompt(
         diff: "",
         retryCount: finalState.retryCount,
         durationMs,
+        tokens: finalState.tokens,
+        costDetails: finalState.costDetails,
+        stepCosts: finalState.stepCosts,
       },
     };
   }
@@ -102,6 +108,9 @@ export async function improvePrompt(
       diff: patch,
       retryCount: finalState.retryCount,
       durationMs,
+      tokens: finalState.tokens,
+      costDetails: finalState.costDetails,
+      stepCosts: finalState.stepCosts,
     },
   };
 }

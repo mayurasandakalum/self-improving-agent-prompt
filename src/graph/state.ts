@@ -42,6 +42,40 @@ export const GraphState = Annotation.Root({
     reducer: (a, b) => b ?? a,
     default: () => null,
   }),
+  
+  // Usage tracking
+  tokens: Annotation<any>({
+    reducer: (a, b) => {
+      if (!a) return b;
+      if (!b) return a;
+      return {
+        input: (a.input || 0) + (b.input || 0),
+        output: (a.output || 0) + (b.output || 0),
+        totalTokens: (a.totalTokens || 0) + (b.totalTokens || 0),
+        cachedTokens: (a.cachedTokens || 0) + (b.cachedTokens || 0),
+        reasoningTokens: (a.reasoningTokens || 0) + (b.reasoningTokens || 0),
+      };
+    },
+    default: () => null,
+  }),
+  costDetails: Annotation<any>({
+    reducer: (a, b) => {
+      if (!a) return b;
+      if (!b) return a;
+      return {
+        totalCost: (a.totalCost || 0) + (b.totalCost || 0),
+        upstreamInferenceCost: (a.upstreamInferenceCost || 0) + (b.upstreamInferenceCost || 0),
+        upstreamInferenceInputCost: (a.upstreamInferenceInputCost || 0) + (b.upstreamInferenceInputCost || 0),
+        upstreamInferenceOutputCost: (a.upstreamInferenceOutputCost || 0) + (b.upstreamInferenceOutputCost || 0),
+        pipelineStages: [...(a.pipelineStages || []), ...(b.pipelineStages || [])],
+      };
+    },
+    default: () => null,
+  }),
+  stepCosts: Annotation<any[]>({
+    reducer: (a, b) => [...(a || []), ...(b || [])],
+    default: () => [],
+  }),
 });
 
 export type StateType = typeof GraphState.State;

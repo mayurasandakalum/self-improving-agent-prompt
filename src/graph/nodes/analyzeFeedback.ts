@@ -43,5 +43,12 @@ ${JSON.stringify(state.extractedFeedback, null, 2)}`;
   }
   return {
     analysis: validated,
+    tokens: response.tokens,
+    costDetails: response.costDetails,
+    stepCosts: [{
+      step: "analyzeFeedback",
+      cost: response.costDetails.totalCost,
+      tokens: response.tokens,
+    }],
   };
 };

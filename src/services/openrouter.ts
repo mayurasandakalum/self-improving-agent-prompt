@@ -261,10 +261,6 @@ export async function callClaude(
       configuration: {
         baseURL: "https://openrouter.ai/api/v1",
         apiKey: config.OPENROUTER_API_KEY,
-        defaultHeaders: {
-          "HTTP-Referer": config.OPENROUTER_HTTP_REFERER,
-          "X-Title": config.OPENROUTER_X_TITLE,
-        },
       },
       maxRetries: config.DEFAULT_MAX_RETRIES + 2, // 3 attempts total
     });

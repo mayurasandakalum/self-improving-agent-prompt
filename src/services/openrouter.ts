@@ -14,7 +14,27 @@ export interface CallClaudeOptions {
  */
 export async function callClaude(
   opts: CallClaudeOptions
-): Promise<{ content: string; tokens: { input: number; output: number } }> {
+): Promise<{
+  content: string;
+  tokens: { 
+    input: number; 
+    output: number;
+    totalTokens: number;
+    cachedTokens?: number;
+    reasoningTokens?: number;
+  };
+  costDetails: {
+    totalCost: number;
+    upstreamInferenceCost?: number | null;
+    upstreamInferenceInputCost?: number;
+    upstreamInferenceOutputCost?: number;
+    pipelineStages?: {
+      name: string;
+      type: string;
+      costUsd?: number | null;
+    }[];
+  };
+}> {
   logger.debug({ model: config.OPENROUTER_MODEL, temperature: opts.temperature }, "Calling Claude via OpenRouter API");
 
   try {
@@ -28,14 +48,29 @@ export async function callClaude(
     });
 
     const content = await result.getText();
+    const response = await result.getResponse();
 
-    // The SDK currently abstracts away tokens, using default 0 for now to satisfy types
     const tokens = {
-      input: 0,
-      output: 0,
+      input: response.usage?.inputTokens ?? 0,
+      output: response.usage?.outputTokens ?? 0,
+      totalTokens: response.usage?.totalTokens ?? 0,
+      cachedTokens: response.usage?.inputTokensDetails?.cachedTokens ?? 0,
+      reasoningTokens: response.usage?.outputTokensDetails?.reasoningTokens ?? 0,
     };
 
-    return { content, tokens };
+    const costDetails = {
+      totalCost: response.usage?.cost ?? 0,
+      upstreamInferenceCost: response.usage?.costDetails?.upstreamInferenceCost,
+      upstreamInferenceInputCost: response.usage?.costDetails?.upstreamInferenceInputCost,
+      upstreamInferenceOutputCost: response.usage?.costDetails?.upstreamInferenceOutputCost,
+      pipelineStages: response.openrouterMetadata?.pipeline?.map(stage => ({
+        name: stage.name,
+        type: stage.type,
+        costUsd: stage.costUsd,
+      })),
+    };
+
+    return { content, tokens, costDetails };
   } catch (error: any) {
     logger.error({ error: error.message }, "Error during OpenRouter Claude call");
     throw error;

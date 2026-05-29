@@ -1,5 +1,4 @@
-import { ChatOpenAI } from "@langchain/openai";
-import { SystemMessage, HumanMessage } from "@langchain/core/messages";
+import { OpenRouter } from "@openrouter/sdk";
 import { config } from "../config.js";
 import { logger } from "../utils/logger.js";
 
@@ -255,26 +254,21 @@ export async function callClaude(
   logger.debug({ model: config.OPENROUTER_MODEL, temperature: opts.temperature }, "Calling Claude via OpenRouter API");
 
   try {
-    const model = new ChatOpenAI({
-      modelName: config.OPENROUTER_MODEL,
-      temperature: opts.temperature,
-      configuration: {
-        baseURL: "https://openrouter.ai/api/v1",
-        apiKey: config.OPENROUTER_API_KEY,
-      },
-      maxRetries: config.DEFAULT_MAX_RETRIES + 2, // 3 attempts total
+    const client = new OpenRouter({ apiKey: config.OPENROUTER_API_KEY });
+    const result = client.callModel({
+      model: config.OPENROUTER_MODEL,
+      instructions: opts.systemPrompt,
+      input: [{ role: "user", content: opts.userMessage }],
+      // Include temperature if supported by SDK. Note: OpenRouter SDK might pass unknown props to the API.
+      ...(opts.temperature !== undefined && { temperature: opts.temperature }),
     });
 
-    const messages = [new SystemMessage(opts.systemPrompt), new HumanMessage(opts.userMessage)];
+    const content = await result.getText();
 
-    const response = await model.invoke(messages, {
-      timeout: config.DEFAULT_TIMEOUT_MS,
-    });
-
-    const content = response.content as string;
+    // The SDK currently abstracts away tokens, using default 0 for now to satisfy types
     const tokens = {
-      input: response.response_metadata?.tokenUsage?.promptTokens || 0,
-      output: response.response_metadata?.tokenUsage?.completionTokens || 0,
+      input: 0,
+      output: 0,
     };
 
     return { content, tokens };

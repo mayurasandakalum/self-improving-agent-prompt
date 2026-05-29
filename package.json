@@ -21,7 +21,7 @@
   "dependencies": {
     "@langchain/core": "^0.3.19",
     "@langchain/langgraph": "^0.2.22",
-    "@langchain/openai": "^0.3.14",
+    "@openrouter/sdk": "latest",
     "diff": "^5.2.0",
     "dotenv": "^16.4.5",
     "express": "^5.2.1",

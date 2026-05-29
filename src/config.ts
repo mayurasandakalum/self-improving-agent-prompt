@@ -5,7 +5,7 @@ dotenv.config();
 
 const configSchema = z.object({
   OPENROUTER_API_KEY: z.string().default("your_openrouter_api_key_here"),
-  OPENROUTER_MODEL: z.string().default("anthropic/claude-3.5-sonnet:beta"),
+  OPENROUTER_MODEL: z.string().default("anthropic/claude-opus-4.8"),
   LOG_LEVEL: z.enum(["trace", "debug", "info", "warn", "error"]).default("info"),
   DEFAULT_MAX_RETRIES: z.coerce.number().default(1),
   DEFAULT_TIMEOUT_MS: z.coerce.number().default(60000),

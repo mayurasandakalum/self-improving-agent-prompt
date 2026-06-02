@@ -63,11 +63,10 @@ export const GraphState = Annotation.Root({
       if (!a) return b;
       if (!b) return a;
       return {
-        totalCost: (a.totalCost || 0) + (b.totalCost || 0),
-        upstreamInferenceCost: (a.upstreamInferenceCost || 0) + (b.upstreamInferenceCost || 0),
-        upstreamInferenceInputCost: (a.upstreamInferenceInputCost || 0) + (b.upstreamInferenceInputCost || 0),
-        upstreamInferenceOutputCost: (a.upstreamInferenceOutputCost || 0) + (b.upstreamInferenceOutputCost || 0),
-        pipelineStages: [...(a.pipelineStages || []), ...(b.pipelineStages || [])],
+        totalCost: Number(((a.totalCost || 0) + (b.totalCost || 0)).toFixed(4)),
+        upstreamInferenceCost: Number(((a.upstreamInferenceCost || 0) + (b.upstreamInferenceCost || 0)).toFixed(4)),
+        upstreamInferenceInputCost: Number(((a.upstreamInferenceInputCost || 0) + (b.upstreamInferenceInputCost || 0)).toFixed(4)),
+        upstreamInferenceOutputCost: Number(((a.upstreamInferenceOutputCost || 0) + (b.upstreamInferenceOutputCost || 0)).toFixed(4)),
       };
     },
     default: () => null,

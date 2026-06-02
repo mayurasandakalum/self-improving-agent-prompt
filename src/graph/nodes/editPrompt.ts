@@ -79,6 +79,7 @@ ${state.validationResult.failures.map((f: string) => `- ${f}`).join("\n")}
     tokens: response.tokens,
     costDetails: response.costDetails,
     stepCosts: [{
+      stepNum: 3,
       step: "editPrompt",
       cost: response.costDetails.totalCost,
       tokens: response.tokens,

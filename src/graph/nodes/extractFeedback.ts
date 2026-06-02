@@ -45,6 +45,7 @@ ${transcriptText}`;
     tokens: response.tokens,
     costDetails: response.costDetails,
     stepCosts: [{
+      stepNum: 1,
       step: "extractFeedback",
       cost: response.costDetails.totalCost,
       tokens: response.tokens,

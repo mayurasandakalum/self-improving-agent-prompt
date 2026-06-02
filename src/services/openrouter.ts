@@ -25,14 +25,9 @@ export async function callClaude(
   };
   costDetails: {
     totalCost: number;
-    upstreamInferenceCost?: number | null;
+    upstreamInferenceCost?: number;
     upstreamInferenceInputCost?: number;
     upstreamInferenceOutputCost?: number;
-    pipelineStages?: {
-      name: string;
-      type: string;
-      costUsd?: number | null;
-    }[];
   };
 }> {
   logger.debug({ model: config.OPENROUTER_MODEL, temperature: opts.temperature }, "Calling Claude via OpenRouter API");
@@ -58,16 +53,18 @@ export async function callClaude(
       reasoningTokens: response.usage?.outputTokensDetails?.reasoningTokens ?? 0,
     };
 
+    const formatCost = (val: number | null | undefined): number | undefined => {
+      if (typeof val === "number") {
+        return Number(val.toFixed(4));
+      }
+      return undefined;
+    };
+
     const costDetails = {
-      totalCost: response.usage?.cost ?? 0,
-      upstreamInferenceCost: response.usage?.costDetails?.upstreamInferenceCost,
-      upstreamInferenceInputCost: response.usage?.costDetails?.upstreamInferenceInputCost,
-      upstreamInferenceOutputCost: response.usage?.costDetails?.upstreamInferenceOutputCost,
-      pipelineStages: response.openrouterMetadata?.pipeline?.map(stage => ({
-        name: stage.name,
-        type: stage.type,
-        costUsd: stage.costUsd,
-      })),
+      totalCost: formatCost(response.usage?.cost) ?? 0,
+      upstreamInferenceCost: formatCost(response.usage?.costDetails?.upstreamInferenceCost),
+      upstreamInferenceInputCost: formatCost(response.usage?.costDetails?.upstreamInferenceInputCost),
+      upstreamInferenceOutputCost: formatCost(response.usage?.costDetails?.upstreamInferenceOutputCost),
     };
 
     return { content, tokens, costDetails };

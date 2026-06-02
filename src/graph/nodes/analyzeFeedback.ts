@@ -46,6 +46,7 @@ ${JSON.stringify(state.extractedFeedback, null, 2)}`;
     tokens: response.tokens,
     costDetails: response.costDetails,
     stepCosts: [{
+      stepNum: 2,
       step: "analyzeFeedback",
       cost: response.costDetails.totalCost,
       tokens: response.tokens,

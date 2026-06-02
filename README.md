@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Voice Prompt Improver
+# 🧠 Self-Improving Agent Prompt
 
 **An autonomous, self-improving prompt evolution engine for AI voice agents**
 
@@ -19,7 +19,7 @@
 
 ## 📖 Overview
 
-**Voice Prompt Improver** is a standalone, production-ready microservice that closes the feedback loop on AI voice agent performance. Instead of relying on manual prompt engineering or explicit user ratings, it autonomously analyzes voice conversation transcripts to detect friction signals, trace them back to root causes in the system prompt, propose targeted edits, and validate those changes through a strict deterministic guard layer — all without human intervention.
+**Self-Improving Agent Prompt** is a standalone, production-ready microservice that closes the feedback loop on AI voice agent performance. Instead of relying on manual prompt engineering or explicit user ratings, it autonomously analyzes voice conversation transcripts to detect friction signals, trace them back to root causes in the system prompt, propose targeted edits, and validate those changes through a strict deterministic guard layer — all without human intervention.
 
 Built on a **LangGraph JS state machine**, the pipeline is introspectable, auditable, and modular — making it trivial to integrate into a BullMQ worker, a webhook handler, or any async backend pipeline.
 
@@ -532,5 +532,5 @@ MIT © [Mayura Sandakalum](https://github.com/mayurasandakalum)
 ---
 
 <div align="center">
-  <sub>Built with ❤️ using LangGraph JS and OpenRouter</sub>
+  <sub>Built with ❤️ using LangGraph JS and OpenRouter &nbsp;·&nbsp; <a href="https://github.com/mayurasandakalum/self-improving-agent-prompt">self-improving-agent-prompt</a></sub>
 </div>

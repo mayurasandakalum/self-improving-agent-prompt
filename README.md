@@ -525,12 +525,6 @@ If any guard fails, the failures are serialized and passed back to the editor LL
 
 ---
 
-## 📄 License
-
-MIT © [Mayura Sandakalum](https://github.com/mayurasandakalum)
-
----
-
 <div align="center">
   <sub>Built with ❤️ using LangGraph JS and OpenRouter &nbsp;·&nbsp; <a href="https://github.com/mayurasandakalum/self-improving-agent-prompt">self-improving-agent-prompt</a></sub>
 </div>
